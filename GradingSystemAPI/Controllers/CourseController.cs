@@ -42,6 +42,12 @@ namespace GradingSystemAPI.Controllers
             return _context.course.FromSqlRaw("select * from course where id={0}",id).ToList();
         }
 
+        [HttpGet("{code}")]
+        public List<Course> GetCourseByCode(String code)
+        {
+            return _context.course.FromSqlRaw("select * from course where code={0}", code).ToList();
+        }
+
 
         [HttpPost]
         public IActionResult SetCourse([FromQuery] Course cor)
