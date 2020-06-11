@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using GradingSystemAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace GradingSystemAPI.Controllers
@@ -28,6 +29,13 @@ namespace GradingSystemAPI.Controllers
         {
             return _context.grading_Schema.ToList();
         }
+
+        [HttpGet("{code}")]
+        public List<Grading_schema> GetGrading_schemaByCode(String code)
+        {
+            return _context.grading_Schema.FromSqlRaw("select * from Grading_Schema where CourseId={0}", code).ToList();
+        }
+
 
         [HttpPost]
 
