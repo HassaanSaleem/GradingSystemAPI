@@ -56,5 +56,21 @@ namespace GradingSystemAPI.Controllers
 
         }
 
+        public IActionResult SetGrading_schema1(Grading_schema sch)
+        {
+            Grading_schema new_sch = new Grading_schema
+            {
+                CourseID = sch.CourseID,
+                ExamType = sch.ExamType,
+                MaxWeightage = sch.MaxWeightage,
+                MinWeightage = sch.MinWeightage
+            };
+
+            _context.Add(new_sch);
+            _context.SaveChanges();
+
+            return Content("Changes Saved");
+
+        }
     }
 }
